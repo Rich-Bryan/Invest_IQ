@@ -24,7 +24,7 @@ py -3 -m venv .venv
 
 ### Window 
 ```
-./venv/Scripts/activate 
+.venv\Scripts\activate
 ```
 
 ## need to make a config.py file for your API keys
