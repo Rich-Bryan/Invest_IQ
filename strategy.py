@@ -18,7 +18,10 @@ import alpaca_trade_api as tradeapi
 from datetime import datetime, timedelta
 from stock import Stock
 
-class SMA(object):
+class SimpleMovingAverages(object):
+    '''
+    On given a OHLCV data frame, calculate corresponding simple moving averages
+    '''
     def __init__(self, ohlcv_df, periods):
         #
         self.ohlcv_df = ohlcv_df
@@ -41,7 +44,6 @@ class SMA(object):
         return(self._sma[period])
 
 #testing
-
 if __name__ == "__main__":
     # Replace with your Alpaca API keys and desired symbol
     api_key = config.API_KEY
@@ -69,7 +71,7 @@ if __name__ == "__main__":
 
     # Instantiate the SMAAlpaca class
     periods = [9]
-    smas = SMA(df, periods)
+    smas = SimpleMovingAverages(df, periods)
     smas.run()
     s1 = smas.get_series(9)
     print("9 SMA", s1.index)

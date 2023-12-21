@@ -17,7 +17,7 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 
 
-from strategy import SMA
+from strategy import SimpleMovingAverages
 
 trading_client = StockHistoricalDataClient(config.API_KEY, config.SECRET)
 
@@ -48,18 +48,19 @@ candlestick = go.Candlestick(
     name='Candlestick'
 )
 
-
-# fig = go.Figure(data=go.Scatter(x=df.index,y=df['close'], mode='lines'))
-
-fig = go.Figure(data=[candlestick])
-fig.update_layout(xaxis_rangeslider_visible=False)
-fig.show()
+# fig = go.Figure(data=[candlestick])
+# fig.update_layout(xaxis_rangeslider_visible=False)
+# fig.show()
 
 # use the functino from my TA
 sma_periods = [9, 50, 100, 200]
-smas = SMA(df, sma_periods)
+smas = SimpleMovingAverages(df, sma_periods)
 # Calculate the SMAs
 smas.run()
+
+
+# Create an array to store the calculated SMAs
+sma_plots = []
 
 # Create an array to store the calculated SMAs
 sma_plots = []
