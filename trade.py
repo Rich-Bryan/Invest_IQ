@@ -17,7 +17,6 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 
 
-from strategy import SimpleMovingAverages
 
 import alpaca_trade_api as tradeapi
 from datetime import datetime, timedelta
@@ -37,11 +36,9 @@ request_params = StockBarsRequest(
                  )
 bars = trading_client.get_stock_bars(request_params)
 df = bars.df
-print(df)
 
-
-#show the line graph
 df.reset_index(inplace=True)
+print(df)
 
 # Calculate SMAs
 sma_20 = btalib.sma(df['close'], period=20).df

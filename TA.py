@@ -41,6 +41,14 @@ class SimpleMovingAverages(object):
     
     def get_series(self, period):
         return(self._sma[period])
+    
+
+
+
+
+class MACD(object):
+    def __init__(self, ohlcv_df, periods):
+        pass
 
 #testing
 if __name__ == "__main__":
@@ -63,10 +71,6 @@ if __name__ == "__main__":
                     )
     bars = trading_client.get_stock_bars(request_params)
     df = bars.df
-
-
-    # print(df.head())
-    # print(df.tail())
 
     # Instantiate the SMAAlpaca class
     periods = [100]
