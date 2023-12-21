@@ -19,6 +19,12 @@ import matplotlib.pyplot as plt
 
 from strategy import SimpleMovingAverages
 
+import alpaca_trade_api as tradeapi
+from datetime import datetime, timedelta
+import btalib
+import pandas as pd
+
+
 trading_client = StockHistoricalDataClient(config.API_KEY, config.SECRET)
 
 
@@ -37,7 +43,10 @@ print(df)
 #show the line graph
 df.reset_index(inplace=True)
 
-# #show candle stick grpah
+# Calculate SMAs
+sma_20 = btalib.sma(df['close'], period=20).df
+sma_50 = btalib.sma(df['close'], period=50).df
+
 # Create candlestick trace
 candlestick = go.Candlestick(
     x=df['timestamp'],
@@ -48,30 +57,24 @@ candlestick = go.Candlestick(
     name='Candlestick'
 )
 
-# fig = go.Figure(data=[candlestick])
-# fig.update_layout(xaxis_rangeslider_visible=False)
-# fig.show()
+# Create traces for SMAs
+sma_20_trace = go.Scatter(
+    x=df['timestamp'],
+    y=sma_20['sma'],
+    mode='lines',
+    line=dict(color='blue'),
+    name='SMA 20'
+)
 
-# use the functino from my TA
-sma_periods = [9, 50, 100, 200]
-smas = SimpleMovingAverages(df, sma_periods)
-# Calculate the SMAs
-smas.run()
+sma_50_trace = go.Scatter(
+    x=df['timestamp'],
+    y=sma_50['sma'],
+    mode='lines',
+    line=dict(color='red'),
+    name='SMA 50'
+)
 
-
-# Create an array to store the calculated SMAs
-sma_plots = []
-
-# Create an array to store the calculated SMAs
-sma_plots = []
-
-# Iterate through the SMA periods and create Plotly traces
-for period in sma_periods:
-    sma_data = smas.get_series(period)  # Retrieve SMA data for the current period
-    sma_plot = go.Scatter(x=sma_data.index, y=sma_data.values, mode='lines', name=f"SMA {period}")
-    sma_plots.append(sma_plot)
-#plot the data
-#include all the elements from *sma_plots
-fig = go.Figure(data=[candlestick , *sma_plots])
+# Create the figure and add traces
+fig = go.Figure(data=[candlestick, sma_20_trace, sma_50_trace])
 fig.update_layout(xaxis_rangeslider_visible=False)
 fig.show()

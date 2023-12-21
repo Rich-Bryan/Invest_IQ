@@ -23,7 +23,6 @@ class SimpleMovingAverages(object):
     On given a OHLCV data frame, calculate corresponding simple moving averages
     '''
     def __init__(self, ohlcv_df, periods):
-        #
         self.ohlcv_df = ohlcv_df
         self.periods = periods
         self._sma = {}
@@ -70,10 +69,10 @@ if __name__ == "__main__":
     # print(df.tail())
 
     # Instantiate the SMAAlpaca class
-    periods = [9]
+    periods = [100]
     smas = SimpleMovingAverages(df, periods)
     smas.run()
-    s1 = smas.get_series(9)
+    s1 = smas.get_series(100)
     print("9 SMA", s1.index)
     print("9 SMA", s1.head(15))
     print("9 SMA", s1.tail(10))

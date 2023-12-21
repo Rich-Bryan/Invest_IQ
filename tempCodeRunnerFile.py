@@ -1,2 +1,0 @@
-
-# Create candlestick trace
