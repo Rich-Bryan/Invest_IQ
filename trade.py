@@ -58,12 +58,19 @@ candlestick = go.Candlestick(
 )
 
 # Calculate SMAs
-sma_20 = btalib.sma(df['close'], period=20).df
-sma_50 = btalib.sma(df['close'], period=50).df
+# Instantiate the SMA class for 20 and 50 periods
+sma_20 = SimpleMovingAverages(df, [20])
+sma_20.run()
+sma_20_values = sma_20.get_series(20)
+
+sma_50 = SimpleMovingAverages(df, [50])
+sma_50.run()
+sma_50_values = sma_50.get_series(50)
+
 # Create traces for SMAs
 sma_20_trace = go.Scatter(
     x=df['timestamp'],
-    y=sma_20['sma'],
+    y=sma_20_values,
     mode='lines',
     line=dict(color='blue'),
     name='SMA 20'
@@ -71,7 +78,7 @@ sma_20_trace = go.Scatter(
 
 sma_50_trace = go.Scatter(
     x=df['timestamp'],
-    y=sma_50['sma'],
+    y=sma_50_values,
     mode='lines',
     line=dict(color='red'),
     name='SMA 50'
@@ -112,8 +119,6 @@ histogram_trace = go.Bar(
     marker=dict(color=np.where(macd_histogram >= 0, 'green', 'red')),  # Color bars based on positive/negative values
     name='MACD Histogram'
 )
-
-
 
 
 # Adding candlestick trace to the first subplot
