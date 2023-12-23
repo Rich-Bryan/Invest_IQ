@@ -67,8 +67,6 @@ class ExponentialMovingAverages(object):
     def get_series(self, period):
         return(self._ema[period])
 
-
-
 class MACD(object):
     def __init__(self, ohlcv_df, short_period, long_period, signal_period):
         self.ohlcv_df = ohlcv_df
@@ -77,6 +75,7 @@ class MACD(object):
         self.signal_period = signal_period
         self._macd = {}
         self._signal_line = {}
+        self._macd_histogram = {}
 
     def calculate_macd(self, price_source='close'):
         # Calculate short and long EMAs
@@ -92,14 +91,17 @@ class MACD(object):
         ema_signal = ExponentialMovingAverages(pd.DataFrame(self._macd), [self.signal_period])
         ema_signal.run()
         self._signal_line = ema_signal.get_series(self.signal_period)
+        # Calculate MACD Histogram (difference between MACD Line and Signal Line)
+        self._macd_histogram = self._macd - self._signal_line
 
     def get_macd_line(self):
         return self._macd
 
     def get_signal_line(self):
         return self._signal_line
-
-
+    
+    def get_macd_histogram(self):
+        return self._macd_histogram
 
 
 #testing

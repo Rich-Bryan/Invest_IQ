@@ -1,2 +1,1 @@
-
-fig.add_trace(macd_trace, row=2, col=1)
+togram_trace, ro

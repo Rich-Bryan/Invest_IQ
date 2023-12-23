@@ -25,9 +25,6 @@ from datetime import datetime, timedelta
 import btalib
 import pandas as pd
 
-
-
-
 class Stock(object):
     def __init__(self, api_key, api_secret, symbol, timeFrame, start_date):
         self.api = StockHistoricalDataClient(api_key, api_secret) 
@@ -62,16 +59,7 @@ if __name__ == "__main__":
 
     df = stock.get_historical_data()
 
-    #adding the 100SMA to the data frame
-    sma = btalib.sma(df, period = 20)
-    sma = btalib.sma(df, period = 50)
-    # df['sma100'] = sma['sma']
-    # print(df)
-
-    # Defines the plot for each trading symbol
-    f, ax = plt.subplots()
-    f.suptitle("SPY")
-
+    
 
     
 
