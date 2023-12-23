@@ -47,6 +47,8 @@ def test():
     positions['Sell_Signal'] = sell_signals
 
     print(positions)
+    # Save positions DataFrame to a CSV file
+    positions.to_csv('backtesting.csv', na_rep='NaN')
 
 
 
