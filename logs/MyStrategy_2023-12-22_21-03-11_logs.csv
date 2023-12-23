@@ -1,0 +1,39 @@
+2023-12-22 21:03:11,295: root: INFO: MyStrategy : Executing the initialize lifecycle method
+2023-12-22 21:03:12,489: root: INFO: Current backtesting datetime 2022-01-03 08:30:00-05:00
+2023-12-22 21:03:12,490: root: INFO: MyStrategy : Executing the before_market_opens lifecycle method
+2023-12-22 21:03:12,491: root: INFO: Current backtesting datetime 2022-01-03 09:30:00-05:00
+2023-12-22 21:03:12,491: root: INFO: MyStrategy : Executing the before_starting_trading lifecycle method
+2023-12-22 21:03:12,492: root: INFO: [34mMyStrategy : Executing the on_trading_iteration lifecycle method at 2023-12-22 21:03:12[0m
+2023-12-22 21:03:12,492: root: ERROR: 'MyStrategy' object has no attribute 'get_stock_data'
+2023-12-22 21:03:12,494: root: ERROR: Traceback (most recent call last):
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 830, in run
+    self._run_trading_session()
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 781, in _run_trading_session
+    self._on_trading_iteration()
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 275, in func_output
+    result = func_input(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 299, in func_output
+    result = func_input(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 88, in func_output
+    return func_input(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 379, in _on_trading_iteration
+    on_trading_iteration()
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\tools\decorators.py", line 62, in func_output
+    frame, result = call_function_get_frame(func_input, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\tools\decorators.py", line 30, in call_function_get_frame
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\tomso\Desktop\Invest_IQ\backTesting.py", line 89, in on_trading_iteration
+    df = self.get_stock_data(symbol)  # Assuming Lumibot provides such a method
+         ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'MyStrategy' object has no attribute 'get_stock_data'
+
+2023-12-22 21:03:12,495: root: INFO: MyStrategy : Executing the on_bot_crash event method
+2023-12-22 21:03:12,506: root: INFO: Backtesting finished
+2023-12-22 21:03:12,507: root: WARNING: Cannot plot returns because the strategy returns are missing
+2023-12-22 21:03:12,518: root: WARNING: Cannot create a tearsheet because the strategy returns are missing
+2023-12-22 21:03:12,518: backtest_stats: INFO: Backtest took 0:00:01.223260 for a speed of 0.000

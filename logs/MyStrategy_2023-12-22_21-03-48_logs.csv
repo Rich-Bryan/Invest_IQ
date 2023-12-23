@@ -1,0 +1,48 @@
+2023-12-22 21:03:48,361: root: INFO: MyStrategy : Executing the initialize lifecycle method
+2023-12-22 21:03:49,547: root: INFO: Current backtesting datetime 2022-01-03 08:30:00-05:00
+2023-12-22 21:03:49,547: root: INFO: MyStrategy : Executing the before_market_opens lifecycle method
+2023-12-22 21:03:49,548: root: INFO: Current backtesting datetime 2022-01-03 09:30:00-05:00
+2023-12-22 21:03:49,548: root: INFO: MyStrategy : Executing the before_starting_trading lifecycle method
+2023-12-22 21:03:49,549: root: INFO: [34mMyStrategy : Executing the on_trading_iteration lifecycle method at 2023-12-22 21:03:49[0m
+2023-12-22 21:03:50,652: yfinance: ERROR: Y: No timezone found, symbol may be delisted
+2023-12-22 21:03:50,718: root: ERROR: YAHOO did not return data for symbol Y. Make sure this symbol is valid.
+2023-12-22 21:03:50,718: root: ERROR: 'close'
+2023-12-22 21:03:50,720: root: ERROR: Traceback (most recent call last):
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 830, in run
+    self._run_trading_session()
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 781, in _run_trading_session
+    self._on_trading_iteration()
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 275, in func_output
+    result = func_input(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 299, in func_output
+    result = func_input(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 88, in func_output
+    return func_input(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\strategies\strategy_executor.py", line 379, in _on_trading_iteration
+    on_trading_iteration()
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\tools\decorators.py", line 62, in func_output
+    frame, result = call_function_get_frame(func_input, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tomso\Desktop\Invest_IQ\.venv\Lib\site-packages\lumibot\tools\decorators.py", line 30, in call_function_get_frame
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\tomso\Desktop\Invest_IQ\backTesting.py", line 97, in on_trading_iteration
+    macd_indicator.calculate_macd()
+  File "c:\Users\tomso\Desktop\Invest_IQ\TA.py", line 83, in calculate_macd
+    ema_short.run(price_source)
+  File "c:\Users\tomso\Desktop\Invest_IQ\TA.py", line 65, in run
+    self._ema[period] = self._calc(period, price_source)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\tomso\Desktop\Invest_IQ\TA.py", line 58, in _calc
+    result = self.ohlcv_df[price_source].ewm(span=period, adjust=False, ignore_na=True).mean(numeric_only=True)
+             ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'close'
+
+2023-12-22 21:03:50,721: root: INFO: MyStrategy : Executing the on_bot_crash event method
+2023-12-22 21:03:50,732: root: INFO: Backtesting finished
+2023-12-22 21:03:50,733: root: WARNING: Cannot plot returns because the strategy returns are missing
+2023-12-22 21:03:50,745: root: WARNING: Cannot create a tearsheet because the strategy returns are missing
+2023-12-22 21:03:50,745: backtest_stats: INFO: Backtest took 0:00:02.384660 for a speed of 0.000
