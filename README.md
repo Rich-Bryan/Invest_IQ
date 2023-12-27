@@ -34,7 +34,7 @@ BASE_URL= ''
 API_KEY = ""
 SECRET = ""
 
-need this to access the lumibot API
+#need this to access the lumibot API
 ALPACA_CONFIG = {
 #Put your own Alpaca key here:
 "API_KEY": '',
